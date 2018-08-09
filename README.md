@@ -20,10 +20,10 @@ nn_last_layer = tf.layers.conv2d_transpose(layer_add_2, num_classes, 16, strides
 ```
 
 The hyperparameter I used are:
-- epochs:
-- batch size:
-- keep probability:
-- learning rate:
+- epochs: 50
+- batch size: 8
+- keep probability: 0.75
+- learning rate: 0.0009
 
 I tried different parameters and these are the results:
 
