@@ -34,7 +34,7 @@ I tried different parameters and these are the results:
 | 50  | 5 | 0.0009 | 0.5 | **0.035** |
 | 20  | 16 | 0.0009 | 0.5 | **0.18** |
 | **50  | 8 | 0.0009 | 0.75 | 0.056** |
-| 50  | 8 | 0.0005 | 0.75 | **0.056** |
+| 50  | 8 | 0.0005 | 0.75 | **0.085** |
 
 ### Examples
 ![First example](/images/um_000014.png)
