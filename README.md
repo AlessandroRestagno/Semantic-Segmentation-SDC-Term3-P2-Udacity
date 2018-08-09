@@ -8,7 +8,7 @@ Semantic segmentation is understanding an image at pixel level, using a Fully Co
 ### Implementation
 I started following the guidelines of the walkthrough video by Udacity. It gave me all the basics. The class introduced a pre-trained VGG-16 network that had to be converted to a fully convolutional network. The final fully connected layer need a 1x1 convolution and the depth had to be equal to the number of desired classes. In this case the classes were only two (road and not-road).
 The entire architecture is in this lines of code:
-`
+```
 conv_1x1 = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
     output = tf.layers.conv2d_transpose(conv_1x1, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
     print(tf.shape(output))
@@ -21,7 +21,7 @@ conv_1x1 = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same', kern
     print(tf.shape(conv_1x1_3))
     layer_add_2 = tf.add(output_2, conv_1x1_3)
     nn_last_layer = tf.layers.conv2d_transpose(layer_add_2, num_classes, 16, strides=(8, 8), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-`
+```
 
 The hyperparameter I used are:
 - epochs:
@@ -30,6 +30,7 @@ The hyperparameter I used are:
 - learning rate:
 
 I tried different parameters and these are the results:
+
 | epochs  | batch | learning rate  | keep probability | loss |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | 10  | 1 | 0.0009 | 0.5 | 0.20 |
