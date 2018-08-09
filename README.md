@@ -37,7 +37,7 @@ I tried different parameters and these are the results:
 
 
 ### Examples
-
+![alt text](/images/a)
 
 ### Setup
 ##### GPU
