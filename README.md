@@ -36,7 +36,12 @@ I tried different parameters and these are the results:
 | 50  | 8 | 0.0009 | 0.75 | **0.056** |
 
 ### Examples
-![alt text](/images/a)
+![First example](/images/um_000014.png)
+![Second example](/images/um_000015.png)
+![Third example](/images/um_000021.png)
+![Fourth example](/images/um_000022.png)
+![Fifth example](/images/um_000029.png)
+![Sexth example](/images/um_000035.png)
 
 ### Reflections
 The FCN network classifies over 80% of the road as road, and less then 20% of nor road as road. There is still room for improvement. Probably a lower learning rate could be helpful. The epochs and the batch size I think are ok.
