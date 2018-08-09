@@ -33,11 +33,14 @@ I tried different parameters and these are the results:
 | 5  | 5 | 0.0009 | 0.5 | **0.30** |
 | 50  | 5 | 0.0009 | 0.5 | **0.035** |
 | 20  | 16 | 0.0009 | 0.5 | **0.18** |
-| 50  | 8 | 0.0009 | 0.5 | **0.** |
-
+| 50  | 8 | 0.0009 | 0.75 | **0.056** |
 
 ### Examples
 ![alt text](/images/a)
+
+### Reflections
+The FCN network classifies over 80% of the road as road, and less then 20% of nor road as road. There is still room for improvement. Probably a lower learning rate could be helpful. The epochs and the batch size I think are ok.
+I used my GPU (GeForce GTX 1070) for this project. Every training requires between 10 and 30 minutes. Using a faster GPU on the cloud, can decrease this time and, so, parameter tuning could be easier.
 
 ### Setup
 ##### GPU
