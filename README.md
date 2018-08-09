@@ -10,17 +10,13 @@ I started following the guidelines of the walkthrough video by Udacity. It gave 
 The entire architecture is in this lines of code:
 ```
 conv_1x1 = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    output = tf.layers.conv2d_transpose(conv_1x1, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    print(tf.shape(output))
-    conv_1x1_2 =tf.layers.conv2d(vgg_layer4_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    print(tf.shape(conv_1x1_2))
-    layer_add = tf.add(output, conv_1x1_2)
-    output_2 =  tf.layers.conv2d_transpose(layer_add, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    print(tf.shape(output_2))
-    conv_1x1_3 = tf.layers.conv2d(vgg_layer3_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    print(tf.shape(conv_1x1_3))
-    layer_add_2 = tf.add(output_2, conv_1x1_3)
-    nn_last_layer = tf.layers.conv2d_transpose(layer_add_2, num_classes, 16, strides=(8, 8), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+output = tf.layers.conv2d_transpose(conv_1x1, num_classes, 4, strides=(2, 2), padding='same',       kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+conv_1x1_2 =tf.layers.conv2d(vgg_layer4_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+layer_add = tf.add(output, conv_1x1_2)
+output_2 =  tf.layers.conv2d_transpose(layer_add, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+conv_1x1_3 = tf.layers.conv2d(vgg_layer3_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+layer_add_2 = tf.add(output_2, conv_1x1_3)
+nn_last_layer = tf.layers.conv2d_transpose(layer_add_2, num_classes, 16, strides=(8, 8), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 ```
 
 The hyperparameter I used are:
@@ -31,13 +27,13 @@ The hyperparameter I used are:
 
 I tried different parameters and these are the results:
 
-| epochs  | batch | learning rate  | keep probability | loss |
+| epochs  | batch | learning rate  | keep probability | LOSS |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 10  | 1 | 0.0009 | 0.5 | 0.20 |
-| 5  | 5 | 0.0009 | 0.5 | 0.30 |
-| 50  | 5 | 0.0009 | 0.5 | 0.035 |
-| 20  | 16 | 0.0009 | 0.5 | 0.18 |
-| 50  | 8 | 0.0009 | 0.5 |  |
+| 10  | 1 | 0.0009 | 0.5 | **0.20** |
+| 5  | 5 | 0.0009 | 0.5 | **0.30** |
+| 50  | 5 | 0.0009 | 0.5 | **0.035** |
+| 20  | 16 | 0.0009 | 0.5 | **0.18** |
+| 50  | 8 | 0.0009 | 0.5 | **0.** |
 
 
 ### Examples
