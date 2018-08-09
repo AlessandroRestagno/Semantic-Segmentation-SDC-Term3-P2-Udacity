@@ -2,11 +2,45 @@
 ### Introduction
 In this project, I label the pixels of a road in images using a Fully Convolutional Network (FCN).
 
-### What is semantic segmentation
+### What is semantic segmentation?
+Semantic segmentation is understanding an image at pixel level, using a Fully Convolutional Neural Network. Generally, when we are using a neural network for classification, we consider the image as a whole and classify the full image to a certain category. In semantic segmentation, we classify each pixel of the image to a certain category.
 
 ### Implementation
+I started following the guidelines of the walkthrough video by Udacity. It gave me all the basics. The class introduced a pre-trained VGG-16 network that had to be converted to a fully convolutional network. The final fully connected layer need a 1x1 convolution and the depth had to be equal to the number of desired classes. In this case the classes were only two (road and not-road).
+The entire architecture is in this lines of code:
+`
+conv_1x1 = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    output = tf.layers.conv2d_transpose(conv_1x1, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    print(tf.shape(output))
+    conv_1x1_2 =tf.layers.conv2d(vgg_layer4_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    print(tf.shape(conv_1x1_2))
+    layer_add = tf.add(output, conv_1x1_2)
+    output_2 =  tf.layers.conv2d_transpose(layer_add, num_classes, 4, strides=(2, 2), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    print(tf.shape(output_2))
+    conv_1x1_3 = tf.layers.conv2d(vgg_layer3_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    print(tf.shape(conv_1x1_3))
+    layer_add_2 = tf.add(output_2, conv_1x1_3)
+    nn_last_layer = tf.layers.conv2d_transpose(layer_add_2, num_classes, 16, strides=(8, 8), padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+`
+
+The hyperparameter I used are:
+- epochs:
+- batch size:
+- keep probability:
+- learning rate:
+
+I tried different parameters and these are the results:
+| epochs  | batch | learning rate  | keep probability | loss |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| 10  | 1 | 0.0009 | 0.5 | 0.20 |
+| 5  | 5 | 0.0009 | 0.5 | 0.30 |
+| 50  | 5 | 0.0009 | 0.5 | 0.035 |
+| 20  | 16 | 0.0009 | 0.5 | 0.18 |
+| 50  | 8 | 0.0009 | 0.5 |  |
+
 
 ### Examples
+
 
 ### Setup
 ##### GPU
