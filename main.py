@@ -88,6 +88,12 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
     logits = tf.reshape(nn_last_layer, (-1, num_classes))
     correct_label = tf.reshape(correct_label, (-1,num_classes))
     cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits= logits, labels= correct_label))
+    
+    # Add regularizationo in TensorFlow: https://stackoverflow.com/questions/37107223/how-to-add-regularizations-in-tensorflow
+    reg_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+    reg_constant = 0.01
+    cross_entropy_loss = cross_entropy_loss + reg_constant * sum(reg_losses)
+    
     optimizer = tf.train.AdamOptimizer(learning_rate= learning_rate)
     train_op = optimizer.minimize(cross_entropy_loss)
     
